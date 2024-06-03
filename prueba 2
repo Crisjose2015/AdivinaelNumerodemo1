@@ -1,0 +1,56 @@
+import random
+
+def adivina_el_numero_usuario():
+    numero_secreto = random.randint(1, 100)
+    intentos = 0
+    
+    print("¡Bienvenido a Adivina el Número!")
+    print("Estoy pensando en un número entre 1 y 100.")
+
+    while True:
+        intento = int(input("¿Cuál crees que es el número? "))
+        intentos += 1
+
+        if intento < numero_secreto:
+            print("Más alto...")
+        elif intento > numero_secreto:
+            print("Más bajo...")
+        else:
+            print("¡Felicidades! ¡Adivinaste el número en", intentos, "intentos!")
+            break
+
+def adivina_el_numero_computadora():
+    numero_usuario = int(input("Piensa en un número entre 1 y 100 y dime cuál es: "))
+    intentos = 0
+    limite_inferior = 1
+    limite_superior = 100
+
+    print("Ok, voy a intentar adivinar el número.")
+
+    while True:
+        intento = random.randint(limite_inferior, limite_superior)
+        intentos += 1
+
+        print("¿Es", intento, "tu número?")
+        respuesta = input("Ingresa 's' si es menor, 'm' si es mayor, o 'c' si es correcto: ")
+
+        if respuesta == 's':
+            limite_superior = intento - 1
+        elif respuesta == 'm':
+            limite_inferior = intento + 1
+        else:
+            print("¡Genial! ¡Adiviné tu número en", intentos, "intentos!")
+            break
+
+print("¿Quieres adivinar un número o quieres que la computadora adivine tu número?")
+print("1. Adivinar el número")
+print("2. La computadora adivina tu número")
+
+opcion = int(input("Elige 1 o 2: "))
+
+if opcion == 1:
+    adivina_el_numero_usuario()
+elif opcion == 2:
+    adivina_el_numero_computadora()
+else:
+    print("Opción no válida.")
